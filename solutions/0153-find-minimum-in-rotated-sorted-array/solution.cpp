@@ -9,9 +9,6 @@ public:
                 ans = nums[i+1];
             }
         }
-    if(nums[0] < nums[n-1]){
-        ans = nums[0];
-    }
-        return ans;
+     return ans;
     }
 };
