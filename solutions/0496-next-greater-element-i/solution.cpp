@@ -5,24 +5,23 @@ public:
     int m = nums2.size();
     map<int,int> mp;
     vector<int> ans;
-        for(int i=0; i<m; i++){
-            mp[nums2[i]] = i;
+    stack<int> st;
+        
+        for(int i=m-1; i>=0; i--){
+            while(!st.empty() && nums2[i] >= st.top()){
+                st.pop();
+            }
+            if(st.empty()){
+                mp[nums2[i]] = -1;
+            }else{
+                mp[nums2[i]] = st.top();
+            }
+            st.push(nums2[i]);
         }
         for(int i=0; i<n; i++){
-            bool check = false;
-            if(mp[nums1[i]]+1 < m){
-                for(int j=mp[nums1[i]]+1; j<m; j++){
-                    if(nums2[mp[nums1[i]]] < nums2[j]){
-                        ans.push_back(nums2[j]);
-                        check = true;
-                        break;
-                    }
-                }
-            }
-            if(!check){
-                ans.push_back(-1);
-            }
+            ans.push_back(mp[nums1[i]]);
         }
+    
         return ans;
     }
 };
