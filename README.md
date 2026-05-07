@@ -1,4 +1,4 @@
-# Leetcode-Master-CPP
+# CodeForces-CPP
 Daily DSA practice
 # C++ Data Structures & Algorithms 🧠
 
