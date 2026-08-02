@@ -4,6 +4,9 @@ public:
     int n = m.size();
     bool check = 0;
         for(int i=0; i<n; i++){
+            if(m[i][0] > tar){
+                break;
+            }
             if(check){
                 break;
             }
