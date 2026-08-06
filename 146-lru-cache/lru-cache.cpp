@@ -51,11 +51,9 @@ public:
         Node* ansNode = mp[key];
         int ans = mp[key]->val;
 
-        mp.erase(key);
         delNode(ansNode);
 
         addNode(ansNode);
-        mp[key] = ansNode;
 
         return ans;
     }
