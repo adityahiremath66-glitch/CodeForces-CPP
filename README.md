@@ -1,6 +1,6 @@
 # Hi there, I'm Aditya 👋
 
-I am a 1st-year Engineering student focused on building efficient software and smart hardware. Currently, I'm deep-diving into Data Structures and Algorithms while exploring the intersection of AI and physical fitness.
+I am a 2nd-year Engineering student focused on building efficient software and smart hardware. Currently, I'm deep-diving into Data Structures and Algorithms while exploring the intersection of AI and physical fitness.
 
 ### 🚀 Quick Stats
 * 💻 **Coding:** 285+ LeetCode problems solved (C++)
