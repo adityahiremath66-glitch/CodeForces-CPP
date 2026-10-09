@@ -3,7 +3,7 @@
 I am a 2nd-year Engineering student focused on building efficient software and smart hardware. Currently, I'm deep-diving into Data Structures and Algorithms while exploring the intersection of AI and physical fitness.
 
 ### 🚀 Quick Stats
-* 💻 **Coding:** 285+ LeetCode problems solved (C++)
+* 💻 **Coding:** 350+ LeetCode problems solved (C++)
 * 🛠️ **Current Focus:** Optimization of Computer Vision for real-time tracking.
 * 🏆 **Achievements:** Holder of a Certificate of Registration of Design for "Vertical Cascade Tower Smart Bin."
 
