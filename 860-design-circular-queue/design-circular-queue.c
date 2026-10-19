@@ -1,81 +1,66 @@
+
 #include <stdlib.h>
 #include <stdbool.h>
+
 typedef struct {
-    int front;
-    int rear;
-    int n;
+    int front, rear, n;
     int *q;
 } MyCircularQueue;
 
+MyCircularQueue cq;
+
 MyCircularQueue* myCircularQueueCreate(int k) {
-    MyCircularQueue* obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
-
-    obj->front = -1;
-    obj->rear = -1;
-    obj->n = k;
-    obj->q = (int*)malloc(k * sizeof(int));
-
-    return obj;
+    cq.q = malloc(k * sizeof(int));
+    cq.front = cq.rear = -1;
+    cq.n = k;
+    return &cq;
 }
-bool myCircularQueueIsFull(MyCircularQueue* obj);
-bool myCircularQueueIsEmpty(MyCircularQueue* obj);
+
+bool myCircularQueueIsEmpty(MyCircularQueue* obj) {
+    return cq.front == -1;
+}
+
+bool myCircularQueueIsFull(MyCircularQueue* obj) {
+    return !myCircularQueueIsEmpty(obj) &&
+           (cq.rear + 1) % cq.n == cq.front;
+}
+
 bool myCircularQueueEnQueue(MyCircularQueue* obj, int value) {
-    if (myCircularQueueIsFull(obj)) {
+    if (myCircularQueueIsFull(obj))
         return false;
-    }
 
-    if (myCircularQueueIsEmpty(obj)) {
-        obj->front = 0;
-        obj->rear = 0;
-    } else {
-        obj->rear = (obj->rear + 1) % obj->n;
-    }
+    if (myCircularQueueIsEmpty(obj))
+        cq.front = cq.rear = 0;
+    else
+        cq.rear = (cq.rear + 1) % cq.n;
 
-    obj->q[obj->rear] = value;
+    cq.q[cq.rear] = value;
     return true;
 }
 
 bool myCircularQueueDeQueue(MyCircularQueue* obj) {
-    if (myCircularQueueIsEmpty(obj)) {
+    if (myCircularQueueIsEmpty(obj))
         return false;
-    }
 
-    if (obj->front == obj->rear) {
-        obj->front = -1;
-        obj->rear = -1;
-    } else {
-        obj->front = (obj->front + 1) % obj->n;
-    }
+    if (cq.front == cq.rear)
+        cq.front = cq.rear = -1;
+    else
+        cq.front = (cq.front + 1) % cq.n;
 
     return true;
 }
 
 int myCircularQueueFront(MyCircularQueue* obj) {
-    if (myCircularQueueIsEmpty(obj)) {
-        return -1;
-    }
-
-    return obj->q[obj->front];
+    return myCircularQueueIsEmpty(obj) ? -1 : cq.q[cq.front];
 }
 
 int myCircularQueueRear(MyCircularQueue* obj) {
-    if (myCircularQueueIsEmpty(obj)) {
-        return -1;
-    }
-
-    return obj->q[obj->rear];
-}
-
-bool myCircularQueueIsEmpty(MyCircularQueue* obj) {
-    return obj->front == -1;
-}
-
-bool myCircularQueueIsFull(MyCircularQueue* obj) {
-    return !myCircularQueueIsEmpty(obj) &&
-           (obj->rear + 1) % obj->n == obj->front;
+    return myCircularQueueIsEmpty(obj) ? -1 : cq.q[cq.rear];
 }
 
 void myCircularQueueFree(MyCircularQueue* obj) {
-    free(obj->q);
-    free(obj);
+    free(cq.q);
+    cq.q = NULL;
+    cq.front = cq.rear = -1;
+    cq.n = 0;
 }
