@@ -11,15 +11,21 @@
  */
 class Solution {
 public:
-    bool check(TreeNode* left,TreeNode* right){
-        if(!left && !right) return 1;
-        if(!left || !right) return 0;
-
-        return (left->val == right->val) && check(left->left,right->right) && check(left->right,right->left);
-    }
     bool isSymmetric(TreeNode* root) {
-        if(!root) return 1;
-        return check(root->left,root->right);
+    queue<pair<TreeNode*,TreeNode*>> q;
+    q.push({root->left,root->right});
+        while(q.size()){
+            TreeNode* l = q.front().first;
+            TreeNode* r = q.front().second;
+            q.pop();
+            if(!l && !r) continue;
+            if(!l || !r) return 0;
+            if(l->val != r->val) return 0;
 
+            q.push({l->left,r->right});
+            q.push({l->right,r->left});
+            
+        }
+        return 1;
     }
 };
