@@ -11,15 +11,13 @@
  */
 class Solution {
 public:
-    TreeNode* nr = NULL;
+    TreeNode* nxt_rt = NULL;
     void flatten(TreeNode* root) {
         if(!root) return ;
-
         flatten(root->right);
         flatten(root->left);
-
         root->left = NULL;
-        root->right = nr;
-        nr = root;
+        root->right = nxt_rt;
+        nxt_rt = root;
     }
 };
