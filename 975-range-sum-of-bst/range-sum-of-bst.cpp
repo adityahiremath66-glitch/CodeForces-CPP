@@ -11,16 +11,13 @@
  */
 class Solution {
 public:
-    int ans = 0;
     int helper(TreeNode* r,int st, int end){
         if(!r) return 0;
-        if(st <= r->val && r->val <= end){
-            ans+=r->val;
-        }
-        helper(r->left,st,end);
-        helper(r->right,st,end);
+        int curr_sum = (st <= r->val && r->val <= end) ? r->val : 0;
+        int lft_sum = helper(r->left,st,end);
+        int rt_sum = helper(r->right,st,end);
 
-        return ans;
+        return curr_sum+lft_sum+rt_sum;
     }
     int rangeSumBST(TreeNode* root, int low, int high) {
         return helper(root,low,high);
